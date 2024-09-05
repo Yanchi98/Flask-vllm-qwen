@@ -1,0 +1,5 @@
+flask==2.2.5
+transformers==4.43.2
+gunicorn==20.1.0
+modelscope
+vllm==0.5.4
