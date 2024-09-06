@@ -3,6 +3,7 @@ from .predict import G_model
 from flask import Flask, request, Response, abort
 import time
 import os
+import json
 
 @predict_bp.route('/', methods=['POST'])
 def predict():
@@ -36,12 +37,12 @@ def predict():
 
     # 返回响应数据
     result = {
-        'code': '200',
-        'msg': '响应成功',
-        'data': res
+        "code": "200",
+        "msg": "响应成功",
+        "data": res
     }
 
-    return Response(str(result), mimetype='application/json')
+    return Response(json.dumps(result), mimetype='application/json')
 
 if not os.path.exists('/root/autodl-tmp/model/Qwen'):
     snapshot_download('qwen/Qwen2-7B-Instruct', cache_dir='/root/autodl-tmp/model')
