@@ -1,6 +1,9 @@
 # Flask-vllm-qwen推理
 program自用，Flask+vllm推理
 
+# 硬件
+RTX 4090D * 1卡 26G
+
 # 环境依赖
 pip install -r requirements.txt
 
@@ -39,3 +42,9 @@ G_model.load_model('/root/autodl-tmp/model/Qwen/Qwen2-7B-Instruct')
     }
 }
 `
+
+# 更新
+9.6: 修改出参为json格式， 修改vllm版本为0.5.5
+`
+return Response(str(result), mimetype='application/json')
+return Response(json.dumps(result), mimetype='application/json')`
