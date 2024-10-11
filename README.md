@@ -1,20 +1,20 @@
-# Flask-vllm-qwen推理
-program自用，Flask+vllm推理
+# Flask-vllm-qwen deployment
+program self-use，vllm infer, Flask api
 
-# 硬件
+# Hardware
 RTX 4090D * 1卡 26G
 
-# 环境依赖
+# Env requirements
 pip install -r requirements.txt
 
 注意: vllm >= 0.5.5才支持vLLM.chat
 
 https://docs.vllm.ai/en/v0.5.5/dev/offline_inference/llm.html
 
-# 启动服务
+# Run service
 bash.start.sh
 
-根据是否存在模型路径判断是否需要下载模型，模型地址修改成自己的地址
+if need model download:
 
 `
 service.view.py
@@ -23,9 +23,9 @@ if not os.path.exists('/root/autodl-tmp/model/Qwen'):
 G_model.load_model('/root/autodl-tmp/model/Qwen/Qwen2-7B-Instruct')
 `
 
-# 调用服务
+# Request
 
-入参：input里的内容必填，request_metadata选填
+body：input(needed)，request_metadata(optional)
 
 `
 {
@@ -43,8 +43,8 @@ G_model.load_model('/root/autodl-tmp/model/Qwen/Qwen2-7B-Instruct')
 }
 `
 
-# 更新
-9.6: 修改出参为json格式， 修改vllm版本为0.5.5
+# Update
+9.6: update output json format, vllm>=0.5.5
 `
 return Response(str(result), mimetype='application/json')
 return Response(json.dumps(result), mimetype='application/json')`
